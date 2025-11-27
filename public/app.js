@@ -41,6 +41,7 @@ socket.on('tierUpdated', (data) => {
 // 아이템 추가 수신
 socket.on('itemAdded', (item) => {
     console.log('새 아이템 추가:', item);
+    // 서버에서 승인된 후 로컬 데이터에 추가
     currentTierData.unranked.push(item);
     renderTiers();
 });
@@ -153,19 +154,19 @@ addItemBtn.addEventListener('click', () => {
     const itemName = itemNameInput.value.trim();
     
     if (itemName) {
+        // 아이템 이름 길이 제한
+        if (itemName.length > 100) {
+            alert('아이템 이름은 100자를 초과할 수 없습니다.');
+            return;
+        }
+        
         const newItem = {
-            id: Date.now().toString(),
+            id: crypto.randomUUID(),
             name: itemName
         };
         
-        // 로컬 데이터 업데이트
-        currentTierData.unranked.push(newItem);
-        
         // 서버에 전송
         socket.emit('addItem', newItem);
-        
-        // UI 업데이트
-        renderTiers();
         
         // 입력 필드 초기화
         itemNameInput.value = '';
