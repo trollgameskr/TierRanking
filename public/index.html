@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>실시간 티어 랭킹</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 실시간 티어 랭킹</h1>
+            <div class="user-info">
+                <span id="userCount">접속자: 0명</span>
+            </div>
+        </header>
+
+        <div class="controls">
+            <input type="text" id="itemName" placeholder="새 아이템 이름을 입력하세요">
+            <button id="addItemBtn">아이템 추가</button>
+        </div>
+
+        <div class="tier-container">
+            <div class="tier-row tier-s" data-tier="S">
+                <div class="tier-label">S</div>
+                <div class="tier-content" id="tier-S"></div>
+            </div>
+
+            <div class="tier-row tier-a" data-tier="A">
+                <div class="tier-label">A</div>
+                <div class="tier-content" id="tier-A"></div>
+            </div>
+
+            <div class="tier-row tier-b" data-tier="B">
+                <div class="tier-label">B</div>
+                <div class="tier-content" id="tier-B"></div>
+            </div>
+
+            <div class="tier-row tier-c" data-tier="C">
+                <div class="tier-label">C</div>
+                <div class="tier-content" id="tier-C"></div>
+            </div>
+
+            <div class="tier-row tier-d" data-tier="D">
+                <div class="tier-label">D</div>
+                <div class="tier-content" id="tier-D"></div>
+            </div>
+
+            <div class="tier-row tier-unranked" data-tier="unranked">
+                <div class="tier-label">미배치</div>
+                <div class="tier-content" id="tier-unranked"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>드래그 앤 드롭으로 아이템을 티어에 배치하세요. 변경사항은 실시간으로 모든 사용자에게 공유됩니다.</p>
+        </footer>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
